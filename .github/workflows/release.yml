@@ -3,8 +3,7 @@ name: Release
 on:
     push:
         branches:
-            - "master"
-    workflow_dispatch:
+            - main
 
 
 
@@ -34,6 +33,6 @@ jobs:
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: npm audit signatures
       - name: Release
+        uses: ncipollo/release-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
