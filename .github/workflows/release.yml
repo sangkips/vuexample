@@ -32,7 +32,6 @@ jobs:
           node-version: 18
           cache: 'npm'
       - run: npm ci
-      - run: npm run build
       - name: Install dependencies
         run: npm clean-install
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
