@@ -38,6 +38,11 @@
     },
     "rules": {}
   },
+  
+    "release": {
+      "branches": ["main", "next"]
+    },
+ 
   "browserslist": [
     "> 1%",
     "last 2 versions",
