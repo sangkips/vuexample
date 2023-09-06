@@ -1,7 +1,4 @@
 <template>
- <div id="app">
-    <User />
-  </div>
 </template>
 
 <script>
@@ -11,6 +8,7 @@ export default {
   name: 'App',
   components: {
     User
+    HelloWorld
   }
 }
 </script>
