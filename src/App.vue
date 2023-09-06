@@ -1,7 +1,4 @@
 <template>
- <div id="app">
-    <User />
-  </div>
 </template>
 
 <script>
