@@ -11,9 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+      - name: Install latest npm version
+        run: npm install -g npm@latest
+      - name: Install dependencies and build
+        run: npm ci
       - name: Build changelog
         id: build_changelog
         uses: mikepenz/release-changelog-builder-action@main
