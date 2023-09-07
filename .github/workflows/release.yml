@@ -1,22 +1,36 @@
 name: Release
-
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
+        - main
+
+permissions:
+  contents: read
 
 jobs:
   release:
+    name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Install semantic-release plugins
-        run: |
-          npm install @semantic-release/github -D
-          npm install @semantic-release/changelog -D
-          
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      - run: npm ci
+      - name: Install dependencies
+        run: npm clean-install
+      - name: Verify the integrity
+        run: npm audit signatures
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
